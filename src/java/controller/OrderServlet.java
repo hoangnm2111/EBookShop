@@ -21,7 +21,6 @@ import java.util.Random;
 import model.Cart;
 import model.Order;
 //import static org.eclipse.jdt.internal.compiler.parser.Parser.name;
-
 /**
  *
  * @author HIEU
@@ -118,7 +117,7 @@ public class OrderServlet extends HttpServlet {
                 o.setFullAddress(fullAddress);
                 o.setBookName(c.getBookName());
                 o.setAuthor(c.getAuthor());
-                o.setPrice(c.getPrice() + "");
+                o.setPrice(c.getPrice());
                 o.setPaymentType(paymentType);
                 orderList.add(o);
             }

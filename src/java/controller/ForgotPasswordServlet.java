@@ -107,9 +107,8 @@ public class ForgotPasswordServlet extends HttpServlet {
                 props.put("mail.smtp.port", "465");
                 Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("ebooksp24h@gmail.com", "wsua zmff stcx yxiq");// Put your email
-                        // id and
-                        // password here
+                        return new PasswordAuthentication("ebooksp24h@gmail.com", "wsua zmff stcx yxiq");
+                        
                     }
                 });
                 String htmlContent = "<!DOCTYPE html>"
@@ -148,7 +147,6 @@ public class ForgotPasswordServlet extends HttpServlet {
                         + "</body>"
                         + "</html>";
 
-                // compose message
                 try {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(email));
@@ -163,11 +161,9 @@ public class ForgotPasswordServlet extends HttpServlet {
                 }
                 dispatcher = request.getRequestDispatcher("enterOtp.jsp");
                 request.setAttribute("success", "OTP is sent to your email id");
-                //request.setAttribute("connection", con);
                 mySession.setAttribute("otp", otpvalue);
                 mySession.setAttribute("email", email);
                 dispatcher.forward(request, response);
-                //request.setAttribute("status", "success");
             } else {
                 dispatcher = request.getRequestDispatcher("forgot_password.jsp");
                 request.setAttribute("error", "Email not registered, please register!");

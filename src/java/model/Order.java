@@ -18,14 +18,14 @@ public class Order {
     private String fullAddress;
     private String bookName;
     private String author;
-    private String price;
+    private double price;
     private String paymentType;
     private String status;
 
     public Order() {
     }
 
-    public Order(int id, String orderId, String userName, String email, String phone, String fullAddress, String bookName, String author, String price, String paymentType, String status) {
+    public Order(int id, String orderId, String userName, String email, String phone, String fullAddress, String bookName, String author, Double price, String paymentType, String status) {
         this.id = id;
         this.orderId = orderId;
         this.userName = userName;
@@ -47,8 +47,6 @@ public class Order {
         this.status = status;
     }
 
-    
-
     public String getBookName() {
         return bookName;
     }
@@ -66,10 +64,11 @@ public class Order {
     }
 
     public String getPrice() {
-        return price;
+        return String.format("%.2f", price);
+
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -127,6 +126,10 @@ public class Order {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public String getFormattedPrice() {
+        return String.format("%.2f", price);
     }
 
 }

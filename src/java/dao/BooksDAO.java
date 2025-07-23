@@ -117,16 +117,21 @@ public class BooksDAO extends DBContext {
         return f;
     }
 
-    public void deleteBook(int bookId) {
+    public boolean deleteBook(int bookId) {
         String query = "delete from Books\n"
                 + "where bookId = ?";
+        boolean f = false;
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, bookId);
-            ps.executeUpdate();
+            int i = ps.executeUpdate();
+            if (i == 1) {
+                f = true;
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
+        return f;
     }
 
     public List<Book> getNewBook() {
@@ -454,7 +459,7 @@ public class BooksDAO extends DBContext {
                 book.setBookName(rs.getString("bookName"));
                 book.setAuthor(rs.getString("author"));
                 book.setPrice(rs.getDouble("price"));
-                book.setPhotoName(rs.getString("photo")); 
+                book.setPhotoName(rs.getString("photo"));
                 book.setBookCategory(rs.getString("bookCategory"));
                 books.add(book);
             }
@@ -463,8 +468,8 @@ public class BooksDAO extends DBContext {
         }
         return books;
     }
-    
-     public List<Book> getAllNewBookSortedByPrice(String order) {
+
+    public List<Book> getAllNewBookSortedByPrice(String order) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books WHERE bookCategory = 'New' ORDER BY price " + order;
         try {
@@ -476,7 +481,7 @@ public class BooksDAO extends DBContext {
                 book.setBookName(rs.getString("bookName"));
                 book.setAuthor(rs.getString("author"));
                 book.setPrice(rs.getDouble("price"));
-                book.setPhotoName(rs.getString("photo")); 
+                book.setPhotoName(rs.getString("photo"));
                 book.setBookCategory(rs.getString("bookCategory"));
                 books.add(book);
             }

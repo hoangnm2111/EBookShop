@@ -9,6 +9,7 @@ package model;
  * @author HIEU
  */
 public class Cart {
+
     private int cid;
     private int bid;
     private int userId;
@@ -86,8 +87,8 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-   
+    public String getFormattedPrice() {
+        return String.format("%.2f", price);
+    }
 
-    
-    
 }

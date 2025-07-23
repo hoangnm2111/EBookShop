@@ -81,10 +81,10 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
             String check = request.getParameter("check");
 
-            if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
+            if ("ebooksp24h@gmail.com".equals(email) && "admin".equals(password)) {
                 User us = new User();
                 us.setName("Admin");
-                us.setEmail("admin@gmail.com");
+                us.setEmail("ebooksp24h@gmail.com");
                 request.getSession().setAttribute("userobj", us);
                 response.sendRedirect("admin1/home.jsp");
             } else {

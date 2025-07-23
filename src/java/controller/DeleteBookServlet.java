@@ -60,7 +60,13 @@ public class DeleteBookServlet extends HttpServlet {
 //        processRequest(request, response);
         int bookId = Integer.parseInt(request.getParameter("bookId"));
         BooksDAO dao = new BooksDAO();
-        dao.deleteBook(bookId);
+        boolean isDeleted = dao.deleteBook(bookId);
+
+        if (isDeleted) {
+            request.getSession().setAttribute("success", "Delete successful.");
+        } else {
+            request.getSession().setAttribute("error", "Delete failed. The book might not exist.");
+        }
         response.sendRedirect("all_books");
     }
 

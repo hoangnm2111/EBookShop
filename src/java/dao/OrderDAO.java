@@ -50,7 +50,7 @@ public class OrderDAO extends DBContext {
     public List<Order> getAllOrdersByEM(String email) {
         List<Order> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM Orders WHERE email = ?";
+        String sql = "  SELECT * FROM Orders WHERE email = ? ORDER BY Id DESC";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, email);
@@ -66,7 +66,7 @@ public class OrderDAO extends DBContext {
                     o.setPhone(rs.getString("phone"));
                     o.setBookName(rs.getString("bookName"));
                     o.setAuthor(rs.getString("author"));
-                    o.setPrice(rs.getString("price"));
+                    o.setPrice(rs.getDouble("price"));
                     o.setPaymentType(rs.getString("payment"));
                     o.setStatus(rs.getString("status"));
                     list.add(o); 
@@ -82,7 +82,7 @@ public class OrderDAO extends DBContext {
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM Orders";
+        String sql = "SELECT * FROM Orders ORDER BY id DESC";
 
         try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -95,7 +95,7 @@ public class OrderDAO extends DBContext {
                 o.setPhone(rs.getString("phone"));
                 o.setBookName(rs.getString("bookName"));
                 o.setAuthor(rs.getString("author"));
-                o.setPrice(rs.getString("price"));
+                o.setPrice(rs.getDouble("price"));
                 o.setPaymentType(rs.getString("payment"));
                 o.setStatus(rs.getString("status"));
                 list.add(o); 

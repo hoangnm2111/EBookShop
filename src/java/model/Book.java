@@ -117,4 +117,7 @@ public class Book {
         this.email = email;
     }
 
+    public String getFormattedPrice() {
+        return String.format("%.2f", price);
+    }
 }
